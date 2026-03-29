@@ -1,0 +1,73 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Calibri;}{\f1 Arial;}}
+\viewkind4\uc1\pard\sa200\sl276\slmult1\qc\b\f1\fs32 HACKATHON RAPORU\par
+\pard\qc\f0\fs24 Proje Adi: Ay'a Ilk Temas\par
+\qc Takim / Gelistirici: Emir\par
+\qc Tarih: 29 Mart 2026\par
+\pard\sa240\par
+\pard\b\fs28 1. Proje Ozeti\b0\fs22\par
+Ay'a Ilk Temas, kullaniciyi Dunya'nin atmosfer katmanlarindan Ay yuzeyine kadar tasiyan etkilesimli bir web tabanli egitim ve oyun projesidir. Proje, uzay ve atmosfer bilgilerini klasik sunum mantigindan cikarip oyunlastirilmis bir gorev akisina donusturur. Kullanici her durakta bilgi kartlarini okur, sorulari cevaplar, roketin hizini ve ilerlemesini hisseder ve finalde Ay'a kontrollu inis yapar.\par
+\par
+\b\fs28 2. Problem Tanimi\b0\fs22\par
+Uzay, atmosfer ve temel astronomi konulari ogrencilere ve genel kullanicilara cogu zaman statik metinler, uzun videolar veya ezbere dayali icerikler ile aktarilmaktadir. Bu yontemler dikkat surdurmede zayif kalabilmekte, ogrenilen bilginin kaliciligini azaltmakta ve kullanicinin konuya duygusal bag kurmasini zorlastirmaktadir.\par
+Bu proje, bilimsel icerigi daha etkilesimli, akilda kalici ve motive edici hale getirmeyi amaclar. Kullanici sadece bilgi okumaz; gorevin bir parcasi haline gelir.\par
+\par
+\b\fs28 3. Cozum Yaklasimi\b0\fs22\par
+Proje, gorev tabanli bir uzay yolculugu kurgusu ile tasarlanmistir. Kullanici troposferden baslayarak stratosfer, mezosfer, termosfer, ekzosfer, Dunya yorungesi, derin uzay, Ay yorungesi ve Ay'a yaklasma adimlarini gecerek final inis sahnesine ulasir. Her durakta bilgi ve soru bir arada sunulur. Dogru cevaplar roketin hizini ve puanini artirir, yanlis cevaplar ise komboyu bozar ve ilerleme hissini etkiler. Boylece proje hem bilgi aktarimi hem de oyun hissi ureten cift katmanli bir deneyim sunar.\par
+\par
+\b\fs28 4. Projenin Amaci\b0\fs22\par
+Projenin temel amaci, uzay ve atmosfer konularini oyunlastirilmis bir deneyimle ogretmek, kullaniciyi aktif katilimci haline getirmek ve egitsel icerigi daha modern bir arayuzle sunmaktir. Ayrica finalde yer alan Ay'a inis mekanigi ile kullaniciya ogrendigi yolculugun zirve noktasi hissettirilir.\par
+\par
+\b\fs28 5. Hedef Kitle\b0\fs22\par
+Proje ozellikle ortaokul, lise ve erken universite seviyesindeki ogrenciler icin uygundur. Bununla birlikte bilim merkezleri, atolyeler, dijital sergiler, hackathon sunumlari ve STEM odakli etkinliklerde de rahatlikla kullanilabilecek bir yapidadir.\par
+\par
+\b\fs28 6. Temel Ozellikler\b0\fs22\par
+\pard\fi-360\li720 - 10 durakli ilerleme yapisi ile atmosferden Ay'a uzanan kademeli gorev akisi\par
+- Her durakta bilgi notu, eglenceli bilgi ve coktan secmeli / dogru-yanlis soru yapisi\par
+- Dogru cevaplara bagli puan, combo ve hiz sistemi\par
+- Zustand tabanli oyun durumu yonetimi ve localStorage ile kayitli ilerleme\par
+- Finalde kullanicinin scroll ile yonettigi etkilesimli Ay inis sahnesi\par
+- Pixel-art roket, Ay ve Dunya gorselleri ile zenginlestirilmis gorsel dil\par
+- NASA esintili modern ana ekran ve gorev paneli tasarimi\par
+- Ses kontrolu ve gorev akisi boyunca gorsel geri bildirimler\par
+\pard\sa200\sl276\slmult1
+\par
+\b\fs28 7. Teknik Altyapi\b0\fs22\par
+Proje Next.js 16.2.1 ve React 19 ile gelistirilmistir. Arayuz yapisinda App Router kullanilmis, stillendirme tarafinda Tailwind CSS tercih edilmistir. Hareketli gecisler ve animasyonlar Framer Motion ile kurgulanmistir. Oyun durumu Zustand ile yonetilmis, kullanicinin ilerlemesi localStorage'a kaydedilerek tekrar ziyaretlerde devam edebilmesi saglanmistir.\par
+Teknik yigin: Next.js 16.2.1, React 19, TypeScript, Tailwind CSS, Framer Motion ve Zustand.\par
+\par
+\b\fs28 8. Oyun Akisi ve Kullanici Deneyimi\b0\fs22\par
+Kullanici ilk olarak gorev brifingi ile karsilanir. Ismini girdikten sonra gorev baslar ve her durakta hem bilgi paneli hem soru paneli hem de roket sahnesi es zamanli olarak gorulur. Bu uc panel yapisi; bilgi, karar ve hareket hissini ayni ekranda bulusturarak klasik quiz arayuzlerinden ayrilir. Final bolumunde kullanici Ay'a inis yapar. Bu asama proje deneyimini sadece bilgi odakli olmaktan cikarip, etkilesimli bir final gorevine donusturur.\par
+\par
+\b\fs28 9. Icerik ve Bilimsel Kapsam\b0\fs22\par
+Projede troposfer, stratosfer, mezosfer, termosfer ve ekzosfer gibi atmosfer katmanlari; Dunya yorungesi, derin uzay, Ay yorungesi ve Ay'a yaklasma gibi uzay yolculugu asamalari ele alinmaktadir. Sorular yalnizca ezber odakli degil, kullanicinin temel kavramlari anlamasini destekleyecek bicimde kurgulanmistir.\par
+\par
+\b\fs28 10. Tasarim Dili ve Gorsel Yaklasim\b0\fs22\par
+Projenin gorsel dili, koyu uzay tonlari, parlak vurgular, pixel-art uzay araclari ve gorev paneli mantigiyla olusturulmustur. Kullanilan renkler ve panel yapilari, bir kontrol merkezi hissi yaratirken Ay ve Dunya gibi gorseller tematik tutarlilik saglar. Bu tasarim karari projeyi siradan bir egitim ekranindan cikarip sunuma uygun, akilda kalici bir deneyime donusturur.\par
+\par
+\b\fs28 11. Yenilikci Yonler\b0\fs22\par
+\pard\fi-360\li720 - Egitimi dogrudan oyun akisina entegre etmesi\par
+- Bilgi paneli, soru paneli ve roket sahnesini ayni ekranda birlestirmesi\par
+- Finalde kullanicidan aktif kontrol isteyen Ay inis mekanigi\par
+- Kayitli ilerleme sayesinde tekrar kullanima uygun olmasi\par
+- Hackathon icin hizli prototip olmasina ragmen sunum kalitesi yuksek bir arayuz sunmasi\par
+\pard\sa200\sl276\slmult1
+\par
+\b\fs28 12. Karsilasilan Zorluklar\b0\fs22\par
+Gelisim surecinde arayuz yerlesimi, oyun hissinin dengelenmesi, roket animasyonlarinin dogal gorunmesi, inis sahnesinin fizik hissi ve gorsel varliklarin uyumu gibi konularda birden fazla iterasyon yapilmistir. Ozellikle roketin hareketi, Ay yuzeyi kompozisyonu ve giris ekraninin placeholder gorunumunden cikmasi proje boyunca odak noktasi olmustur. Bu surec, kullanici geri bildirimi ile hizli iterasyon yapmanin hackathon projelerinde ne kadar kritik oldugunu gostermistir.\par
+\par
+\b\fs28 13. Elde Edilen Sonuc\b0\fs22\par
+Ortaya cikan urun, hem egitsel hem sunumsal acidan guclu bir hackathon projesidir. Kullaniciya bir yolculuk hissi verir, sadece bilgi gostermez. Ogrenen kisiyi gorevin bir parcasi yapar. Bu da projeyi klasik bilgi sunumlarina gore daha etkili ve daha dikkat cekici hale getirir.\par
+\par
+\b\fs28 14. Gelecek Gelistirme Onerileri\b0\fs22\par
+\pard\fi-360\li720 - Coklu dil destegi eklenmesi\par
+- Ogretmen veya egitmen paneli ile sinif kullanimi icin raporlama eklenmesi\par
+- Her durak icin mini animasyonlar veya sesli anlatim kullanilmasi\par
+- Skor tablosu ve rozet sistemi ile tekrar oynanabilirligin artirilmasi\par
+- Mobil kontrol optimizasyonlari ve dokunmatik inis mekaniklerinin gelistirilmesi\par
+- Ay gorevinden sonra Mars veya diger uzay gorevlerine genisleyebilecek moduler bir yapi kurulmasi\par
+\pard\sa200\sl276\slmult1
+\par
+\b\fs28 15. Sonuc ve Degerlendirme\b0\fs22\par
+Ay'a Ilk Temas, bilimsel icerigi etkilesimli tasarim ve oyunlastirma ile birlestiren basarili bir hackathon projesidir. Teknik olarak modern web teknolojileriyle gelistirilmis, tasarim olarak sunum degeri yuksek, icerik olarak ise egitsel fayda ureten bir yapidadir. Proje, uzay temasini sadece gosteren degil, yasatan bir deneyime donusturmeyi basarmistir.\par
+}

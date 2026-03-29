@@ -261,7 +261,7 @@ export default function GamePage() {
                     <motion.div
                         className="absolute left-1/2"
                         animate={{
-                            bottom: `${12 + (currentStation / 10) * 56}%`,
+                            bottom: `${-2 + ((currentStation - 1) / 9) * 44}%`,
                             x: '-50%',
                         }}
                         transition={{ duration: 0.9, ease: 'easeInOut' }}
@@ -276,7 +276,7 @@ export default function GamePage() {
 
                     {/* Durak etiketi */}
                     <motion.div
-                        className="absolute bottom-6 left-1/2 -translate-x-1/2 
+                        className="absolute bottom-16 left-1/2 -translate-x-1/2 
                        bg-space-900/70 backdrop-blur-md border border-white/10 
                        rounded-full px-4 py-1.5"
                         key={`label-${currentStation}`}

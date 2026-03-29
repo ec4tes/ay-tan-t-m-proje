@@ -8,12 +8,20 @@ interface RocketProps {
     isShaking: boolean;
     isThrusting: boolean;
     progress: number;
+    isLanding?: boolean;
 }
 
-export default function Rocket({ speed, isShaking, isThrusting, progress }: RocketProps) {
+export default function Rocket({
+    speed,
+    isShaking,
+    isThrusting,
+    progress,
+    isLanding = false,
+}: RocketProps) {
     const flameScale = 0.82 + (speed / 10) * 0.55;
     const trailOpacity = 0.2 + (speed / 10) * 0.22;
-    const travelOffset = Math.min(progress, 100) * 1.2;
+    const travelOffset = Math.min(progress, 100) * 0.55;
+    const shouldFloat = !isLanding && !isShaking;
 
     return (
         <motion.div
@@ -21,14 +29,18 @@ export default function Rocket({ speed, isShaking, isThrusting, progress }: Rock
             animate={
                 isShaking
                     ? { x: [0, -3, 3, -2, 2, 0], rotate: [0, -1, 1, 0] }
-                    : { y: [0, -6, 0], rotate: [-1, 1, -1] }
+                    : shouldFloat
+                        ? { y: [0, -6, 0], rotate: [-1, 1, -1] }
+                        : { y: 0, rotate: 0, x: 0 }
             }
             transition={
                 isShaking
                     ? { duration: 0.45, ease: 'easeInOut', repeat: Infinity }
-                    : { duration: 2.8 - Math.min(speed, 8) * 0.12, ease: 'easeInOut', repeat: Infinity }
+                    : shouldFloat
+                        ? { duration: 2.8 - Math.min(speed, 8) * 0.12, ease: 'easeInOut', repeat: Infinity }
+                        : { duration: 0.25, ease: 'easeOut' }
             }
-            style={{ transform: `translateY(${-travelOffset * 0.12}px)` }}
+            style={{ transform: `translateY(${-travelOffset * 0.1}px)` }}
         >
             <div
                 className="absolute left-1/2 top-[56%] -z-10 w-40 -translate-x-1/2 rounded-full blur-2xl"

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import Rocket from './Rocket';
@@ -18,6 +18,7 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
     const [thrustPower, setThrustPower] = useState(52);
     const [isLanded, setIsLanded] = useState(false);
     const [landingQuality, setLandingQuality] = useState<'perfect' | 'good' | 'rough' | null>(null);
+    const descentVelocityRef = useRef(0.42);
 
     const handleScroll = useCallback(
         (e: WheelEvent) => {
@@ -41,11 +42,24 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
     useEffect(() => {
         if (isLanded) return;
 
-        const interval = setInterval(() => {
+        let animationFrame = 0;
+        let previousTime = performance.now();
+
+        const updateLanding = (currentTime: number) => {
+            const deltaMultiplier = Math.min((currentTime - previousTime) / 16.67, 1.8);
+            previousTime = currentTime;
+
             setAltitude((prev) => {
                 const normalizedThrust = thrustPower / 100;
-                const descendRate = Math.max(0.12, (1 - normalizedThrust) * 1.25 + prev * 0.0025);
-                const nextAltitude = prev - descendRate;
+                const gravityPull = 0.28 + (prev / 100) * 0.18;
+                const thrustLift = normalizedThrust * 0.4;
+                const nearSurfaceBrake = prev < 18 ? 0.9 : 0.965;
+
+                descentVelocityRef.current =
+                    (descentVelocityRef.current + gravityPull - thrustLift) * nearSurfaceBrake;
+                descentVelocityRef.current = Math.max(0.05, Math.min(descentVelocityRef.current, 2.3));
+
+                const nextAltitude = prev - descentVelocityRef.current * deltaMultiplier;
 
                 if (nextAltitude <= 0) {
                     setIsLanded(true);
@@ -63,9 +77,13 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
 
                 return nextAltitude;
             });
-        }, 60);
 
-        return () => clearInterval(interval);
+            animationFrame = window.requestAnimationFrame(updateLanding);
+        };
+
+        animationFrame = window.requestAnimationFrame(updateLanding);
+
+        return () => window.cancelAnimationFrame(animationFrame);
     }, [thrustPower, isLanded]);
 
     const thrustColor =
@@ -86,7 +104,7 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
                     ? 'bg-emerald-400'
                     : 'bg-cyan-400';
 
-    const rocketBottom = isLanded ? '8%' : `${6 + altitude * 0.48}%`;
+    const rocketBottom = isLanded ? '8%' : `${6 + altitude * 0.5}%`;
     const showDust = !isLanded && altitude < 24 && thrustPower > 14;
 
     return (
@@ -115,17 +133,16 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
                 <div className="absolute inset-x-0 bottom-[42%] h-[16%] bg-[linear-gradient(to_top,rgba(255,255,255,0.06),rgba(255,255,255,0.02),transparent)]" />
 
                 <motion.div
-                    className="absolute bottom-[18%] left-[68%] h-64 w-40 md:h-80 md:w-52"
+                    className="absolute bottom-[17%] left-[58%] h-72 w-44 md:h-[22rem] md:w-56"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: isLanded ? 1 : 0, y: isLanded ? 0 : 20 }}
                     transition={{ duration: 0.8, delay: isLanded ? 0.4 : 0 }}
                 >
-                    <div className="absolute bottom-0 left-1/2 h-20 w-2 -translate-x-1/2 rounded-full bg-stone-900 md:h-28" />
                     <Image
                         src="/flag.png"
                         alt="Flag"
                         fill
-                        sizes="208px"
+                        sizes="224px"
                         className="object-contain object-bottom"
                     />
                 </motion.div>
@@ -133,8 +150,7 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
 
             <motion.div
                 className="absolute left-1/2 -translate-x-1/2"
-                animate={{ bottom: rocketBottom }}
-                transition={{ duration: 0.18, ease: 'easeOut' }}
+                style={{ bottom: rocketBottom }}
             >
                 <div className="relative scale-[0.68] md:scale-[0.8]">
                     <motion.div
@@ -172,6 +188,7 @@ export default function MoonLanding({ speed, onComplete, username }: MoonLanding
                         isShaking={thrustPower < 22}
                         isThrusting={!isLanded && thrustPower > 14}
                         progress={100 - altitude}
+                        isLanding
                     />
                 </div>
             </motion.div>
